@@ -712,6 +712,7 @@ func TestStartSessionUniformDistribution(t *testing.T) {
 	testStartSession(t, mux, browsersProvider, "browser", "1.0")
 	testStartSessionCustomCaps(t, mux, browsersProvider, `{"desiredCapabilities":{"deviceName":"someDevice", "version":"2.0"}}`)
 	testStartSessionCustomCaps(t, mux, browsersProvider, `{"desiredCapabilities":{"deviceName":"someDevice", "version":"2.0"}}`)
+	uniformDistribution = false
 }
 
 func TestStartSessionWithLocationHeader(t *testing.T) {
@@ -1737,7 +1738,6 @@ func TestPanicGuestQuotaMissingUsersFileAuthPresent(t *testing.T) {
 }
 
 func TestCreateSessionChangeRegionOnFailure(t *testing.T) {
-	uniformDistribution = false
 	var selectedRegions []string
 
 	srv1 := httptest.NewServer(recordingMux("a", &selectedRegions))
