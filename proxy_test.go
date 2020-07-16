@@ -28,8 +28,6 @@ import (
 	auth "github.com/abbot/go-http-auth"
 	. "github.com/aerokube/ggr/config"
 	"golang.org/x/net/websocket"
-	"os"
-	"path/filepath"
 )
 
 var (
@@ -387,7 +385,7 @@ func TestProxyVideoFile(t *testing.T) {
 	defer func() {
 		rootToken = ""
 	}()
-	req, _ := http.NewRequest(http.MethodGet, gridrouter(fmt.Sprintf("/video/%s", sessionID)), nil)
+	req, _ = http.NewRequest(http.MethodGet, gridrouter(fmt.Sprintf("/video/%s", sessionID)), nil)
 	req.Header.Add("X-Ggr-Root-Token", "correct-token")
 	rsp, err = http.DefaultClient.Do(req)
 	AssertThat(t, err, Is{nil})
